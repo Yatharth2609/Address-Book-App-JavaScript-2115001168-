@@ -71,11 +71,21 @@ class AddressBook {
         this.contacts = [];
     }
 
-    // Add a contact
+    // Add a contact with duplicate check
     addContact(contact) {
         if (!(contact instanceof Contact)) {
             throw new Error("Invalid contact object.");
         }
+
+        // Checking for duplicate using filter method
+        const isDuplicate = this.contacts
+            .filter(existingContact => existingContact.getFullName() === contact.getFullName())
+            .length > 0;
+
+        if (isDuplicate) {
+            throw new Error(`Contact with name ${contact.getFullName()} already exists.`);
+        }
+
         this.contacts.push(contact);
         console.log(`Contact added: ${contact.getFullName()}`);
     }
