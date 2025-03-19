@@ -70,4 +70,13 @@ class AddressBook {
     constructor() {
         this.contacts = [];
     }
+
+    // Add a contact
+    addContact(contact) {
+        if (!(contact instanceof Contact)) {
+            throw new Error("Invalid contact object.");
+        }
+        this.contacts.push(contact);
+        console.log(`Contact added: ${contact.getFullName()}`);
+    }
 }
