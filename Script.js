@@ -105,4 +105,14 @@ class AddressBook {
         console.log(`Contact updated: ${contact.getFullName()}`);
     }
 
+    // Remove a contact by name
+    removeContact(name) {
+        const initialLength = this.contacts.length;
+        this.contacts = this.contacts.filter(contact => contact.name !== name);
+        if (this.contacts.length === initialLength) {
+            throw new Error("Contact not found.");
+        }
+        console.log(`Contact with Name ${name} removed.`);
+    }
+
 }
