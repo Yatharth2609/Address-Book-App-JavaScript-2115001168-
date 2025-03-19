@@ -148,4 +148,14 @@ class AddressBook {
             Email: contact.email
         }));
     }
+    
+    // Get the count of contacts in a given City or State.
+    getContactCountByLocation(location) {
+        return this.contacts
+            .filter(contact => 
+                contact.city.toLowerCase() === location.toLowerCase() || 
+                contact.state.toLowerCase() === location.toLowerCase()
+            )
+            .reduce(count => count + 1, 0);
+    }
 }
