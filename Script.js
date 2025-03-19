@@ -129,4 +129,12 @@ class AddressBook {
     getContactCount() {
         return this.contacts.reduce(count => count + 1, 0);
     }
+
+    //Search contacts by either City or State.
+    searchByLocation(location) {
+        return this.contacts.filter(contact => 
+            contact.city.toLowerCase() === location.toLowerCase() ||
+            contact.state.toLowerCase() === location.toLowerCase()
+        );
+    }
 }
