@@ -79,4 +79,30 @@ class AddressBook {
         this.contacts.push(contact);
         console.log(`Contact added: ${contact.getFullName()}`);
     }
+
+    // Find contact by full name
+    findContactByName(firstName, lastName) {
+        return this.contacts.find(contact => 
+            contact.firstName.toLowerCase() === firstName.toLowerCase() &&
+            contact.lastName.toLowerCase() === lastName.toLowerCase()
+        );
+    }
+
+    // Edit existing contact details
+    editContact(firstName, lastName, newDetails) {
+        const contact = this.findContactByName(firstName, lastName);
+        if (!contact) {
+            throw new Error(`Contact ${firstName} ${lastName} not found.`);
+        }
+
+        // Updating only the provided fields
+        Object.keys(newDetails).forEach(field => {
+            if (contact.hasOwnProperty(field)) {
+                contact[field] = newDetails[field];
+            }
+        });
+
+        console.log(`Contact updated: ${contact.getFullName()}`);
+    }
+
 }
