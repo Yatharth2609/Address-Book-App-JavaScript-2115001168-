@@ -137,4 +137,15 @@ class AddressBook {
             contact.state.toLowerCase() === location.toLowerCase()
         );
     }
+
+
+    //View contacts in a given City or State with formatted details.
+    viewContactsByLocation(location) {
+        return this.searchByLocation(location).map(contact => ({
+            Name: contact.getFullName(),
+            Address: contact.address,
+            Phone: contact.phone,
+            Email: contact.email
+        }));
+    }
 }
