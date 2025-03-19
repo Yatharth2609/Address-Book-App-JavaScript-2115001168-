@@ -115,4 +115,8 @@ class AddressBook {
         console.log(`Contact with Name ${name} removed.`);
     }
 
+    // Get the total number of contacts using reduce
+    getContactCount() {
+        return this.contacts.reduce(count => count + 1, 0);
+    }
 }
