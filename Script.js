@@ -25,6 +25,11 @@ class Contact {
         return `${this.firstName} ${this.lastName}`;
     }
 
+    //Override toString() to print formatted contact details
+    toString() {
+        return `Name: ${this.getFullName()}, Address: ${this.address}, City: ${this.city}, State: ${this.state}, ZIP: ${this.zip}, Phone: ${this.phone}, Email: ${this.email}`;
+    }
+
      // Starts with uppercase, min 3 chars
     validateName(name, fieldName) {
         const nameRegex = /^[A-Z][a-zA-Z]{2,}$/; 
@@ -157,5 +162,19 @@ class AddressBook {
                 contact.state.toLowerCase() === location.toLowerCase()
             )
             .reduce(count => count + 1, 0);
+    }
+
+    //Sort contacts alphabetically by name
+    sortContactsByName() {
+        return this.contacts.sort((a, b) => {
+            const nameA = a.getFullName().toLowerCase();
+            const nameB = b.getFullName().toLowerCase();
+            return nameA.localeCompare(nameB);
+        });
+    }
+
+    //Print all sorted contacts to the console.
+    printSortedContacts() {
+        this.sortContactsByName().forEach(contact => console.log(contact.toString()));
     }
 }
